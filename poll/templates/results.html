@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row all">
+    <div class="col-lg-12">
+        <div class="card">
+            <h3 class="card-header">Poll Results</h3>
+            <div class="card-body">
+                <h3>{{poll.question}}</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">{{poll.choice1}}<h3>{{poll.choice1_count}}</h3></li>
+                    <li class="list-group-item">{{poll.choice2}}<h3>{{poll.choice2_count}}</h3></li>
+                    <li class="list-group-item">{{poll.choice3}}<h3>{{poll.choice3_count}}</h3></li>
+                    <li class="list-group-item">{{poll.choice4}}<h3>{{poll.choice4_count}}</h3></li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                Total votes = <strong>{{ poll.total }}</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
