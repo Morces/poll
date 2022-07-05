@@ -7,15 +7,22 @@
     <div class="card">
         <h3 class="card-header">All Polls</h3>
     <div class="card-body">
+        {% if polls %}
+        {% for poll in polls %}
         <h5 class="quiz">
-            Which is your best programming language?
+            {{ poll.question }}
             <span class="buttons pull-right">
-                <button class="btn btn-outline-primary">View Poll</button>
-                <button class="btn btn-outline-primary">View Results</button>
+                <a href="{% url 'vote' poll.id %}" class="btn btn-outline-primary">View Poll</a>
+                <a href="{% url 'results' poll.id %}" class="btn btn-outline-primary">View Results</a>
             </span>
         </h5>
-        <br>
         <hr>
+        {% endfor %}
+        {% else %}
+        <h5>No polls at the moment</h5>
+        {% endif %}
+        <br>
+        
     </div>
     </div>
 </div>

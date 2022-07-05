@@ -4,4 +4,4 @@ from .models import Poll
 class CreatePollForm(ModelForm):
     class Meta:
         model = Poll
-        fields = ('question', 'option1', 'option2', 'option3', 'option4')
+        fields = ('question', 'choice1', 'choice2', 'choice3', 'choice4')
