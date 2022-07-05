@@ -28,11 +28,11 @@ def vote(request, poll_id):
         if choice_select == 'choice1':
             poll.choice1_count +=1
         elif choice_select == 'choice2':
-            poll.choice2_cont +=1
+            poll.choice2_count +=1
         elif choice_select == 'choice3':
-            poll.choice3_cont +=1
+            poll.choice3_count +=1
         elif choice_select == 'choice4':
-            poll.choice4_cont +=1
+            poll.choice4_count +=1
         else:
             return HttpResponse(400, 'Invalid!')
         poll.save()

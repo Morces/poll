@@ -11,7 +11,7 @@
         {% for poll in polls %}
         <h5 class="quiz">
             {{ poll.question }}
-            <span class="buttons pull-right">
+            <span class="buttons">
                 <a href="{% url 'vote' poll.id %}" class="btn btn-outline-primary">View Poll</a>
                 <a href="{% url 'results' poll.id %}" class="btn btn-outline-primary">View Results</a>
             </span>

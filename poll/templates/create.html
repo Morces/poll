@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% block content %}
 <div class="row all">
-    <div class="col-lg-8 col-lg-offset-2">
+    <div class="">
         <div class="card">
             <h3 class="card-header">Create new poll</h3>
             <form method="post">
@@ -20,38 +20,39 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="choice1">Choice one</label>
-                                
+                                {% render_field form.choice1 class="form-control" %}
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="choice2">Choice two</label>
-                                
+                                {% render_field form.choice2 class="form-control" %}
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="choice3">Choice three</label>
-                                
+                                {% render_field form.choice3 class="form-control" %}
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <label for="choice4">Choice four</label>
-                                                
+                            {% render_field form.choice4 class="form-control" %}                   
                         </div>
                     </div>
+                    <br>
                     <div class="row">
-                        <div class="col-lg-4">
-                            <button type="submit" class="btn btn-outline-primary">Submit</button>
+                        <div class="col-lg-6">
+                            <button type="submit" class="btn btn-outline-primary" style="width: 100%;">Submit</button>
                         </div>
                     </div>
                 </div>

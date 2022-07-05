@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% block content %}
+<div class="row all">
+    <div class="card">
+        <h3 class="card-header">Vote Here</h3>
+        <div class="card-body">
+            <div class="col-lg-12">
+                <h3>{{poll.question}}</h3>                                
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="radbtn">
+                        <label for="">
+                            <input type="radio" name="poll" value="choice1">
+                            {{poll.choice1}}
+                        </label>
+                        <label for="">
+                            <input type="radio" name="poll" value="choice2">
+                            {{poll.choice2}}
+                        </label>
+                        <label for="">
+                            <input type="radio" name="poll" value="choice3">
+                            {{poll.choice3}}
+                        </label>
+                        <label for="">
+                            <input type="radio" name="poll" value="choice4">
+                            {{poll.choice4}}
+                        </label>
+                    </div>                               
+                </div>
+                <br>
+                <button type="submit" class="btn btn-outline-primary" style="width: 100%;">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}
