@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from poll.forms import CreatePollForm
 
@@ -15,15 +16,31 @@ def create(request):
         if form.is_valid():
             form.save()
             return redirect('index')
-        else:
-            form = CreatePollForm()
+    else:
+        form = CreatePollForm()
     params = {'form':form}
     return render(request, 'create.html', params)
 
 def vote(request, poll_id):
-    params = {}
+    poll = Poll.objects.get(id=poll_id)
+    if request.method == "POST":
+        choice_select = request.POST['poll']
+        if choice_select == 'choice1':
+            poll.choice1_count +=1
+        elif choice_select == 'choice2':
+            poll.choice2_cont +=1
+        elif choice_select == 'choice3':
+            poll.choice3_cont +=1
+        elif choice_select == 'choice4':
+            poll.choice4_cont +=1
+        else:
+            return HttpResponse(400, 'Invalid!')
+        poll.save()
+        return redirect('results', poll.id)
+    params = {'poll':poll}
     return render(request, 'vote.html',params)
 
 def results(request, poll_id):
-    params = {}
+    poll = Poll.objects.get(id=poll_id)
+    params = {'poll':poll}
     return render(request, 'results.html',params)
