@@ -23,8 +23,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', poll_views.index, name='index'),
     path('create/', poll_views.create, name='create'),
+    path('signup/', poll_views.signup, name='signup'),
+    path('account/', include('django.contrib.auth.urls')),
+    path('logout/', poll_views.logout, name='logout'),
     path('vote/<poll_id>/', poll_views.vote, name='vote'),
     path('results/<poll_id>/', poll_views.results, name='results'),
+    path('profile/<int:pk>', poll_views.profile, name='profile'),
 ] 
 if settings.DEBUG:
  urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

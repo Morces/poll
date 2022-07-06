@@ -1,14 +1,34 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from poll.forms import CreatePollForm
-
-from poll.models import Poll
+from poll.forms import CreatePollForm, SignUpForm
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
+from poll.models import Poll, Profile
 
 # Create your views here.
+@login_required(login_url='login')
 def index(request):
     polls = Poll.objects.all()
     params = {'polls':polls}
     return render(request, 'index.html', params)
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username,password=password)
+            login(request,user)
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/signup.html', {'form':form})
+
+
+def logout(request):
+    logout(request)
+    return redirect('login' )
 
 def create(request):
     if request.method == 'POST':
@@ -44,3 +64,8 @@ def results(request, poll_id):
     poll = Poll.objects.get(id=poll_id)
     params = {'poll':poll}
     return render(request, 'results.html',params)
+
+def profile(request, pk):
+    profile= Profile.objects.get(id=pk)
+    context = {'profile':profile}  
+    return render(request, 'profile.html', context)
