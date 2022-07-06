@@ -29,6 +29,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'create' %}">CREATE POLL</a>
               </li>
+              
               {% if user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'profile' user.id %}">PROFILE</a>
