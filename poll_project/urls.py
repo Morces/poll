@@ -18,6 +18,8 @@ from django.conf.urls.static import static
 from poll import views as poll_views
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.views import LogoutView
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +27,7 @@ urlpatterns = [
     path('create/', poll_views.create, name='create'),
     path('signup/', poll_views.signup, name='signup'),
     path('account/', include('django.contrib.auth.urls')),
-    path('logout/', poll_views.logout, name='logout'),
+    path('logout/', LogoutView.as_view(next_page=settings.LOGOUT_REDIRECT_URL), name='logout'),
     path('vote/<poll_id>/', poll_views.vote, name='vote'),
     path('results/<poll_id>/', poll_views.results, name='results'),
     path('profile/<int:pk>', poll_views.profile, name='profile'),
